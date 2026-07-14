@@ -1,24 +1,31 @@
-// Mock implementation for the AI services.
-// In a real application, you would connect to an LLM provider like Google Gemini, OpenAI, etc.
+const llmService = require('./llm.service');
 
-const processChat = async (text) => {
-  // Mock AI chat response
-  return `This is a mock chat response to: "${text}". Please integrate an actual LLM API.`;
+const processChat = async (options) => {
+  return await llmService.generateResponse({
+    ...options,
+    systemPrompt: options.systemPrompt || 'You are a helpful and intelligent AI assistant.'
+  });
 };
 
-const summarizeText = async (text) => {
-  // Mock summarize response
-  return `Summary: ${text.substring(0, 50)}...`;
+const summarizeText = async (options) => {
+  return await llmService.generateResponse({
+    ...options,
+    systemPrompt: 'You are an expert at summarizing text. Provide a concise, clear summary of the user\'s input.'
+  });
 };
 
-const translateText = async (text, targetLanguage = 'Spanish') => {
-  // Mock translate response
-  return `[Translated to ${targetLanguage}]: ${text}`;
+const translateText = async (options, targetLanguage = 'Spanish') => {
+  return await llmService.generateResponse({
+    ...options,
+    systemPrompt: `You are an expert translator. Translate the following text into ${targetLanguage}. Only return the translation, nothing else.`
+  });
 };
 
-const fixGrammar = async (text) => {
-  // Mock grammar fix response
-  return `[Grammar Fixed]: ${text}`;
+const fixGrammar = async (options) => {
+  return await llmService.generateResponse({
+    ...options,
+    systemPrompt: 'You are a grammar and spell checker. Fix any errors in the text provided by the user. Do not change the meaning of the text.'
+  });
 };
 
 module.exports = {

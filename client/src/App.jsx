@@ -3,7 +3,7 @@ import { AIChatApp } from './components/features/AIChatApp'
 
 function App() {
   return (
-    <div className="min-h-screen w-full bg-slate-950 text-slate-50 font-sans selection:bg-purple-500/30">
+    <div className="h-screen w-full bg-slate-950 text-slate-50 font-sans selection:bg-purple-500/30 overflow-hidden">
       {/* Background gradients */}
       <div className="fixed inset-0 z-0 pointer-events-none">
         <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-purple-900/30 blur-[120px] rounded-full mix-blend-screen"></div>
@@ -12,7 +12,7 @@ function App() {
       </div>
       
       {/* Main Content */}
-      <div className="relative z-10 w-full h-[100dvh] p-3 md:p-8 flex items-center justify-center overflow-hidden">
+      <div className="relative z-10 w-full h-full flex flex-col">
         <AIChatApp />
       </div>
     </div>

@@ -47,3 +47,63 @@ export const Input = ({ value, onChange, placeholder, className = '', onKeyDown 
     />
   );
 };
+
+export const Select = ({ value, onChange, options, className = '' }) => {
+  return (
+    <select
+      value={value}
+      onChange={onChange}
+      className={`
+        bg-slate-800/60 border border-slate-700/50 text-slate-200 
+        py-2 px-3 text-sm rounded-xl cursor-pointer focus:outline-none focus:ring-2 focus:ring-purple-500/50
+        backdrop-blur-sm transition-all
+        ${className}
+      `}
+      style={{ appearance: 'none', WebkitAppearance: 'none' }}
+    >
+      {options.map((opt) => (
+        <option key={opt.value} value={opt.value} className="bg-slate-800">
+          {opt.label}
+        </option>
+      ))}
+    </select>
+  );
+};
+
+export const Slider = ({ value, min, max, step, onChange, label }) => {
+  return (
+    <div className="flex flex-col gap-1 w-full">
+      <div className="flex justify-between text-xs text-slate-400">
+        <span>{label}</span>
+        <span>{value}</span>
+      </div>
+      <input 
+        type="range" 
+        min={min} 
+        max={max} 
+        step={step} 
+        value={value} 
+        onChange={onChange}
+        className="w-full h-1.5 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-purple-500"
+      />
+    </div>
+  );
+};
+
+export const Toggle = ({ checked, onChange, label }) => {
+  return (
+    <label className="flex items-center cursor-pointer gap-2">
+      <div className="relative">
+        <input 
+          type="checkbox" 
+          className="sr-only" 
+          checked={checked} 
+          onChange={onChange} 
+        />
+        <div className={`block w-10 h-6 rounded-full transition-colors ${checked ? 'bg-purple-600' : 'bg-slate-700'}`}></div>
+        <div className={`absolute left-1 top-1 bg-white w-4 h-4 rounded-full transition-transform ${checked ? 'transform translate-x-4' : ''}`}></div>
+      </div>
+      {label && <span className="text-sm text-slate-300 select-none">{label}</span>}
+    </label>
+  );
+};
